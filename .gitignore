@@ -1,0 +1,5 @@
+# misc
+.DS_Store
+.idea
+.vscode
+package-lock.json
