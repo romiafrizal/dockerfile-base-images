@@ -9,7 +9,13 @@ RUN apt-get install -y  libsodium-dev php7.3-xdebug php7.3-bz2 php7.3-soap php7.
 RUN pecl install -f uopz redis libsodium
 RUN echo "extension=sodium.so" > /etc/php/7.3/mods-available/sodium.ini \
     && echo "extension=uopz.so" > /etc/php/7.3/mods-available/uopz.ini \
-    && echo "extension=redis.so" > /etc/php/7.3/mods-available/redis.ini
+    && echo "extension=redis.so" > /etc/php/7.3/mods-available/redis.ini \
+    \
+    && echo "memory_limit=512M" >> /etc/php/7.3/fpm/conf.d/adab.ini \
+    && echo "upload_max_filesize=500M" >> /etc/php/7.3/fpm/conf.d/adab.ini \
+    && echo "max_file_uploads=1000" >> /etc/php/7.3/fpm/conf.d/adab.ini \
+    && echo "post_max_size=500M" >> /etc/php/7.3/fpm/conf.d/adab.ini \
+    && echo "max_execution_time=600" >> /etc/php/7.3/fpm/conf.d/adab.ini
 
 RUN rm -rf /var/lib/apt/lists/*
 EXPOSE 80
