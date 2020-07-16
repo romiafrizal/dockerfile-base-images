@@ -1,5 +1,5 @@
 FROM php:7.3.20-apache
-WORKDIR /var/www/html/
+WORKDIR /var/www/html
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
@@ -29,6 +29,8 @@ RUN pecl install mongodb \
     sockets \
     xsl \
     gd 
+
+RUN pecl install xdebug
 RUN docker-php-ext-install -j$(nproc) xmlrpc \
     soap \
     pdo_mysql
