@@ -38,7 +38,8 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY ./configs/adab4be-lumen/default /etc/nginx/sites-enabled/default
+COPY ./configs/php73-backend/default /etc/nginx/sites-enabled/default
+COPY ./configs/php73-backend/supervisord.conf  /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /var/www/html
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/usr/bin/supervisord"]
