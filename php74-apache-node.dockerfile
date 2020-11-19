@@ -48,7 +48,7 @@ RUN echo "extension=sodium.so" > /etc/php/7.4/mods-available/sodium.ini \
 RUN ln -sf /dev/stdout /var/log/apache2/access.log \
 	&& ln -sf /dev/stderr /var/log/apache2/error.log
 
-COPY ./configs/php74-apache/000-default.conf ${APACHE_CONF_DIR}/sites-enabled/000-default.conf
+COPY ./configs/php74-apache-node/000-default.conf ${APACHE_CONF_DIR}/sites-enabled/000-default.conf
 COPY ./configs/php74-apache-node/supervisord.conf  /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /var/www/html
 RUN a2enmod rewrite
