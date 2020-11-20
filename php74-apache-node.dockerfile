@@ -52,14 +52,16 @@ COPY ./configs/php74-apache-node/000-default.conf ${APACHE_CONF_DIR}/sites-enabl
 COPY ./configs/php74-apache-node/supervisord.conf  /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /var/www/html
 RUN a2enmod rewrite
+RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash -
 RUN apt-get update && apt-get install -y nodejs
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update && apt-get install yarn
-RUN node --version && npm --version && yarn --version
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer \
     && rm /var/www/html/index.html
+ENV YARN_VERSION 1.22.5
+ENV NODE_VERSION 14.15.1
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
 
