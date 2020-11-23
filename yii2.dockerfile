@@ -45,7 +45,13 @@ RUN docker-php-ext-configure wddx \
     && docker-php-ext-install wddx
 RUN docker-php-ext-enable \
     msgpack
+RUN apt-get install -y supervisor \
+    && mkdir -p /var/log/supervisor
+RUN ln -sf /dev/stdout /var/log/apache2/access.log \
+	&& ln -sf /dev/stderr /var/log/apache2/error.log
 # Cleanup
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  /var/cache/* /usr/share/doc/* \
     && docker-php-source delete
-CMD ["apache2-foreground"]
+COPY ./configs/yii2/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./configs/yii2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+CMD ["/usr/bin/supervisord"]
