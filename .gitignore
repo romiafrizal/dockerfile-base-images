@@ -1,5 +1,13 @@
 # misc
 .DS_Store
 .idea
+
+#DEVOPS
+docker-compose-local.yml 
+Dockerfile-local.dockerfile
 .vscode
-package-lock.json
+.orig
+.env-dir/
+gcs_key.json
+gcr_key.json
+sql_proxy.json
