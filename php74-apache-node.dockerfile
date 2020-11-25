@@ -19,7 +19,7 @@ RUN apt-get install -y --no-install-recommends gnupg apt-utils apache2 \
     && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/ondrej-php.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update     && apt-get -y install curl ca-certificates unzip software-properties-common \
-    php7.4 php7.4-cli php7.4-curl php7.4-apcu php7.4-apcu-bc php7.4-dev libmcrypt-dev php-pear php7.4-curl \
+    php7.4 php7.4-cli php7.4-curl php7.4-apcu php7.4-apcu-bc php7.4-dev libmcrypt-dev php-pear php7.4-curl php7.4-imagick\
     php7.4-json php7.4-pdo-mysql php7.4-mbstring php7.4-opcache php7.4-readline php7.4-xml php7.4-zip php7.4-bcmath php7.4-gd php7.4-mysql \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \   
     && composer clear-cache \
