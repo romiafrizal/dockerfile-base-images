@@ -33,7 +33,8 @@ RUN echo "extension=sodium.so" > /etc/php/7.2/mods-available/sodium.ini \
     && echo "post_max_size=500M" >> /etc/php/7.2/apache2/conf.d/1-myconfig.ini \
     && echo "max_execution_time=600" >> /etc/php/7.2/apache2/conf.d/1-myconfig.ini \
     && echo "disable_functions=getmyuid,passthru,leak,listen,diskfreespace,tmpfile,link,ignore_user_abort,shell_exec,dl,set_time_limit,exec,system,highlight_file,source,show_source,fpassthru,virtual,posix_ctermid,posix_getcwd,posix_getegid,posix_geteuid,posix_getgid,posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid,posix,_getppid,posix_getpwuid,posix_getrlimit,posix_getsid,posix_getuid,posix_isatty,posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid,posix_setpgid,posix_setsid,posix_setuid,posix_times,posix_ttyname,posix_uname,proc_open,proc_close,proc_nice,proc_terminate,escapeshellcmd,ini_alter,popen,pcntl_exec,socket_accept,socket_bind,socket_clear_error,socket_close,socket_connect,symlink,posix_geteuid,ini_alter,socket_listen,socket_create_listen,socket_read,socket_create_pair,stream_socket_server" >> /etc/php/7.2/apache2/conf.d/1-myconfig.ini \
-    && echo "allow_url_fopen=On" >> /etc/php/7.2/apache2/conf.d/1-myconfig.ini 
+    && echo "allow_url_fopen=On" >> /etc/php/7.2/apache2/conf.d/1-myconfig.ini \
+    && echo "php_value[error_reporting] = E_ALL & ~E_NOTICE" >> /etc/php/7.2/apache2/conf.d/1-myconfig.ini
 
 RUN apt-get install -y supervisor \
     && mkdir -p /var/log/supervisor
