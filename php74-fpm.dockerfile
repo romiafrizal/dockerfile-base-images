@@ -41,8 +41,8 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY ./configs/php74-nginx/default /etc/nginx/sites-enabled/default
-COPY ./configs/php74-nginx/supervisord.conf  /etc/supervisor/conf.d/supervisord.conf
+COPY ./configs/php74-fpm/default /etc/nginx/sites-enabled/default
+COPY ./configs/php74-fpm/supervisord.conf  /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /var/www/html
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
