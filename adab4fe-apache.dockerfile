@@ -31,6 +31,7 @@ RUN apt-get purge -y --auto-remove $BUILD_DEPS \
 	&& ln -sf /dev/stderr /var/log/apache2/error.log 
 
 COPY ./configs/000-default.conf ${APACHE_CONF_DIR}/sites-enabled/000-default.conf
+COPY ./configs/security.conf ${APACHE_CONF_DIR}/conf-enabled/security.conf
 EXPOSE 80
 WORKDIR /var/www/html
 RUN a2enmod rewrite
