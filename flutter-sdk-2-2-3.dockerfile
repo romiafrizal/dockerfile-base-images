@@ -31,3 +31,6 @@ RUN flutter config --no-analytics
 RUN flutter precache  
 RUN flutter update-packages
 RUN flutter doctor
+
+WORKDIR /home/$USER/app
+EXPOSE 8090 42000
