@@ -1,15 +1,15 @@
 FROM ubuntu:20.04
 
-ENV UID=1000
-ENV GID=1000
-ENV USER="developer"
-ENV JAVA_VERSION="8"
-ENV FLUTTER_CHANNEL="stable"
-ENV FLUTTER_VERSION="2.2.3"
-ENV FLUTTER_GIT_URL="https://github.com/flutter/flutter.git"
-ENV FLUTTER_HOME="/home/$USER/flutter"
-ENV FLUTTER_WEB_PORT="8090"
-ENV FLUTTER_DEBUG_PORT="42000"
+ENV UID=1000 \
+    GID=1000 \
+    USER="developer" \
+    JAVA_VERSION="8" \
+    FLUTTER_CHANNEL="stable" \
+    FLUTTER_VERSION="2.2.3" \
+    FLUTTER_GIT_URL="https://github.com/flutter/flutter.git" \
+    FLUTTER_HOME="/home/$USER/flutter" \
+    FLUTTER_WEB_PORT="8090" \
+    FLUTTER_DEBUG_PORT="42000" 
 
 ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update \
@@ -27,10 +27,10 @@ WORKDIR /home/$USER
 RUN git clone $FLUTTER_GIT_URL --depth 1 -b $FLUTTER_CHANNEL
 RUN cd $FLUTTER_HOME && git checkout tags/$FLUTTER_VERSION 
 ENV PATH "$PATH:$FLUTTER_HOME/bin"
-RUN flutter config --no-analytics 
-RUN flutter precache  
-RUN flutter update-packages
-RUN flutter doctor
+RUN flutter config --no-analytics \ 
+    && flutter precache  \
+    && flutter update-packages\
+    && flutter doctor
 
 WORKDIR /home/$USER/app
 EXPOSE 8090 42000
