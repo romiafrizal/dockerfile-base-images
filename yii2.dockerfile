@@ -43,7 +43,7 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log \
 # Cleanup
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer \
     && rm /var/www/html/index.html
-RUN a2enmod rewrite && apachectl restart
+RUN a2enmod rewrite && a2enmod headers && apachectl restart
 COPY ./configs/yii2/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./configs/yii2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 WORKDIR /var/www/html
